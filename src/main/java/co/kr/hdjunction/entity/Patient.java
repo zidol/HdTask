@@ -1,11 +1,14 @@
 package co.kr.hdjunction.entity;
 
 
+import co.kr.hdjunction.dto.PatientDto;
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import static co.kr.hdjunction.entity.QPatient.patient;
 
 /**
  * 환자 Entity
@@ -56,4 +59,13 @@ public class Patient {
 
     @OneToMany(mappedBy = "patient")
     private List<PatientVisit> patientVisits = new ArrayList<>();
+
+    public void changePatient(PatientDto patientDto) {
+        this.setPatientName(patientDto.getPatientName());
+        this.setPatientRegNo(patientDto.getPatientRegNo());
+        this.setGender(patientDto.getGender());
+        this.setBirth(patientDto.getBirth());
+        this.setMobile(patientDto.getMobile());
+    }
+
 }
